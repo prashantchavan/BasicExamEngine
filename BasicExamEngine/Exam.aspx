@@ -41,7 +41,11 @@
                 Question PreviousQuestion = QuestionSet[PreviousQuestionIndex];
                 PreviousQuestion.ValidateAnswer(SelectedAnswer);
                 PreviousQuestionIndex = PreviousQuestionIndex + 1;
-                Application["PREVIOUSQUESTIONPOINTER"] = PreviousQuestionIndex;                             
+                Application["PREVIOUSQUESTIONPOINTER"] = PreviousQuestionIndex;
+                if (PreviousQuestionIndex >= QuestionSet.Count)
+                {
+                    Response.Redirect("Result.aspx");
+                }
             }
         }
     </script>
@@ -57,15 +61,7 @@
                 Response.Write("<br/><input type='radio' name='Q' value='" + CurrentQuestion.Option3 + "'>" + CurrentQuestion.Option3);
                 Response.Write("<br/><input type='radio' name='Q' value='" + CurrentQuestion.Option4 + "'>" + CurrentQuestion.Option4 + "<br/><br/>");
                 Response.Write("<input  type='submit' value='Submit' />");
-            }
-            else
-            {
-                Response.Write("<h2>Exam completed successfully</h2><br/>");                
-                foreach (Question AnsweredQuestion in QuestionSet)
-                {
-                    Response.Write("Q" + AnsweredQuestion.QuestionNo + " " + AnsweredQuestion.ExamQuestion + " : <b> " + AnsweredQuestion.IsAnsCorrect + "</b><br/>");
-                }
-            }
+            }            
         %>
 
         <%
