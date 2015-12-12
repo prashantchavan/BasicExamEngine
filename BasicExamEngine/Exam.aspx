@@ -60,10 +60,10 @@
             }
             else
             {
-                Response.Write("<h2>Exam completed successfully</h2><br/>");
-                foreach (var CurrentQuestion in QuestionSet)
+                Response.Write("<h2>Exam completed successfully</h2><br/>");                
+                foreach (Question AnsweredQuestion in QuestionSet)
                 {
-                    Response.Write("Q" + CurrentQuestion.QuestionNo + " " + CurrentQuestion.ExamQuestion + " : <b> " + CurrentQuestion.IsAnsCorrect + "</b><br/>");
+                    Response.Write("Q" + AnsweredQuestion.QuestionNo + " " + AnsweredQuestion.ExamQuestion + " : <b> " + AnsweredQuestion.IsAnsCorrect + "</b><br/>");
                 }
             }
         %>
